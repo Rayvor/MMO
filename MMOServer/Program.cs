@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Net.Sockets;
-using System.Threading;
-using System.Linq;
 
 namespace Server
 {
@@ -15,9 +10,15 @@ namespace Server
         {
             Console.Title = "Server";
 
-            Server server = new Server(IPAddress.Any, 2048);
+            Server server = new Server(IPAddress.Parse("127.0.0.1"), 2048)
+            {
+                ConnectedCallback = (cliendId) => Console.WriteLine($"Пользователь {cliendId} подключился"),
+                DisconnectedCallback = (cliendId) => Console.WriteLine($"Пользователь {cliendId} отключился")
+            };
 
-            Console.WriteLine(server.GetListenIpPort());
+            server.Start();
+
+            Console.WriteLine("Сервер запущен {0}", server.GetListenIpPort());
 
             Console.ReadLine();
         }

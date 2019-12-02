@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Client
 {
@@ -19,9 +20,9 @@ namespace Client
         private BinaryWriter writer = new BinaryWriter(ms);
         private BinaryReader reader = new BinaryReader(ms);
 
-        public Game()
+        public Game(string iPAddress, int port)
         {
-            Connect();
+            Connect(iPAddress, port);
             _player = CreatePlayer();
         }
 
@@ -70,12 +71,13 @@ namespace Client
             }
         }
 
-        private void Connect()
+        private void Connect(string iPAddress, int port)
         {
             _serverSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
 
             Console.WriteLine("Подключение...");
-            _serverSocket.Connect("127.0.0.1", 2048);
+            IPAddress ip = IPAddress.Parse(iPAddress);
+            _serverSocket.Connect(ip, port);
             Console.WriteLine("Подключенно.");
 
             Thread.Sleep(1000);

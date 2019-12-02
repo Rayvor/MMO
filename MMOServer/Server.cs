@@ -10,12 +10,23 @@ namespace Server
     public class Server
     {
         private readonly Socket _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private readonly IPAddress _iPAddress;
+        private readonly int _port;
         private List<Client> _clients = new List<Client>();
         private int lastId;
 
+        public Action<int> ConnectedCallback { get; set; }
+        public Action<int> DisconnectedCallback { get; set; }
+
         public Server(IPAddress iPAddress, int port)
         {
-            _serverSocket.Bind(new IPEndPoint(iPAddress, port));
+            _iPAddress = iPAddress;
+            _port = port;
+        }
+
+        public void Start()
+        {
+            _serverSocket.Bind(new IPEndPoint(_iPAddress, _port));
             _serverSocket.Listen(0);
             _serverSocket.BeginAccept(AcceptCallback, null);
         }
@@ -37,7 +48,7 @@ namespace Server
             thread.Start(client);
             _clients.Add(client);
 
-            Console.WriteLine($"Пользователь {client.Id} подключился");
+            ConnectedCallback?.Invoke(client.Id);            
 
             _serverSocket.BeginAccept(AcceptCallback, null);
         }
@@ -62,7 +73,7 @@ namespace Server
                     client.Socket.Shutdown(SocketShutdown.Both);
                     client.Socket.Disconnect(true);
                     _clients.Remove(client);
-                    Console.WriteLine($"Пользователь {client.Id} отключился");
+                    DisconnectedCallback?.Invoke(client.Id);
                     return;
                 }
 
