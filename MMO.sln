@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "MMOServer\Server.csproj", "{7D9BCF6C-6D0D-4FF8-86FE-48FCF46F3D4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{E03C8282-0C6F-4972-999E-A5A4A15BD828}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D9BCF6C-6D0D-4FF8-86FE-48FCF46F3D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D9BCF6C-6D0D-4FF8-86FE-48FCF46F3D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D9BCF6C-6D0D-4FF8-86FE-48FCF46F3D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D9BCF6C-6D0D-4FF8-86FE-48FCF46F3D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03C8282-0C6F-4972-999E-A5A4A15BD828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03C8282-0C6F-4972-999E-A5A4A15BD828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03C8282-0C6F-4972-999E-A5A4A15BD828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03C8282-0C6F-4972-999E-A5A4A15BD828}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E365DE29-7EEE-4456-8794-E8B192B2D740}
+	EndGlobalSection
+EndGlobal
